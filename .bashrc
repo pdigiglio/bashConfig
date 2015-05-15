@@ -1,8 +1,13 @@
-
+##
+## The Idea behind the definition of these parameters is that you keep your git-folder
+## containing all the files somewhere. Then you link the _only_ the `.bashrc` into your
+## `${HOME}` directory and everything will be automatically loaded (after checking that
+## files actually exist).
+##
 ## @param configPath the path where configuration files are located.
 configPath="${HOME}/bashConfig/"
 
-## Load prompt settings
+## @param promptConf name of the file containing prompt configuration.
 promptConf="${configPath}.prompt"
 if [ -f "${promptConf}" ]
 then
