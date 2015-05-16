@@ -7,12 +7,28 @@
 ## @param configPath the path where configuration files are located.
 configPath="${HOME}/bashConfig/"
 
+##
+## @brief Print an error when a file is not found
+##
+function errorPrint {
+	echo -e "Error: cannot find $1"
+}
+
+##
+## @brief Print an error when a file is not found
+##
+function successPrint {
+	echo -e ".bashrc: loaded file $1"
+}
+
 ## @param promptConf name of the file containing prompt configuration.
 promptConf="${configPath}.prompt"
 if [ -f "${promptConf}" ]
 then
-#	echo "Loading ${promptConf}"
 	. ${promptConf}
+	successPrint ${promptConf}
+else
+	errorPrint ${promptConf}
 fi
 
 export PATH=~/bin:$PATH
