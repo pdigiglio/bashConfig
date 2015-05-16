@@ -1,27 +1,30 @@
 ## @file .bashrc
-##
 ## @brief The `.bashrc` file.
-##
+## @par
 ## The Idea behind the definition of these parameters is that you keep your git-folder
 ## containing all the files somewhere. Then you link the _only_ the `.bashrc` into your
 ## `${HOME}` directory and everything will be automatically loaded (after checking that
 ## files actually exist).
-##
+
 ## @param configPath the path where configuration files are located.
 configPath="${HOME}/bashConfig/"
 
-##
-## @brief Print an error when a file is not found
-##
+## Source `.colors`
+. "${configPath}.colors"
+
+## @brief Print an error when a file is not found.
+## @param $1 name of the file which is not found.
 function errorPrint {
-	echo -e "Error: cannot find $1"
+	echo -e "From file ${Green}.bashrc${Color_Off}"
+	echo -e " >> ${BRed}Error!${Color_Off} Cannot find ${Blue}$1${Color_Off}"
 }
 
 ##
 ## @brief Print an error when a file is not found
 ##
 function successPrint {
-	echo -e ".bashrc: loaded file $1"
+	echo -e "From file ${Green}.bashrc${Color_Off}"
+	echo -e " >> Loaded file ${Blue}$1${Color_Off}"
 }
 
 ##
