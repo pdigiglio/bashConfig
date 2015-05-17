@@ -6,6 +6,22 @@
 ## `${HOME}` directory and everything will be automatically loaded (after checking that
 ## files actually exist).
 
+## @fn checkUpdates
+## @brief Check if a new commit has been pushed to my repository
+checkUpdates () {
+
+	# uncomment this to make sure the script is executed in the proper directory
+	#echo "$PWD"
+
+	if [ -z  "$( git diff-index --quiet HEAD -- )" ];
+	then
+		echo ".bashrc is up to date"
+	else
+		echo "new version of .bashrc available"
+	fi
+}
+
+
 ## @param configPath the path where configuration files are located.
 configPath="${HOME}/bashConfig/"
 
@@ -41,6 +57,8 @@ function sourceFile {
 		errorPrint $1
 	fi
 }
+
+checkUpdates
 
 ## @param promptConf name of the file containing prompt configuration.
 promptConf="${configPath}.prompt"
