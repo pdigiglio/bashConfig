@@ -1,12 +1,17 @@
-## @file .bashrc
-## @brief The `.bashrc` file.
-## @par
-## The Idea behind the definition of these parameters is that you keep your git-folder
-## containing all the files somewhere. Then you link the _only_ the `.bashrc` into your
-## `${HOME}` directory and everything will be automatically loaded (after checking that
-## files actually exist).
+
+# @file .bashrc
+#
+# @brief The `.bashrc` file.
+#
+# @par
+# The Idea behind the definition of these parameters is that you keep your git-folder
+# containing all the files somewhere. Then you link the _only_ the `.bashrc` into your
+# `${HOME}` directory and everything will be automatically loaded (after checking that
+# files actually exist).
+# 
 
 gitDir="${HOME}/bashConfig/"
+
 ## @fn checkUpdates
 ## @brief Check if a new commit has been pushed to my repository
 checkUpdates () {
@@ -42,30 +47,35 @@ checkUpdates () {
 ## @param configPath the path where configuration files are located.
 configPath=$gitDir # "${HOME}/bashConfig/"
 
-## Source `.colors`
+# Source `.colors`
 . "${configPath}.colors"
 
-## @brief Print an error when a file is not found.
-## @param $1 name of the file which is not found.
-function errorPrint {
+#
+# @fn errorPrint
+# 
+# @brief Print an error when a file is not found.
+# 
+# @param $1 name of the file which is not found.
+errorPrint () {
 	echo -e "From file ${Green}.bashrc${Color_Off}"
 	echo -e " >> ${BRed}Error!${Color_Off} Cannot find ${Blue}$1${Color_Off}"
 }
 
 ##
-## @brief Print an error when a file is not found
+## @fn successPrint
 ##
-function successPrint {
+## @brief Print message upon successful loaded file.
+##
+## @param $1 name of the file which has been loaded.
+successPrint () {
 	echo -e "From file ${Green}.bashrc${Color_Off}"
 	echo -e " >> Loaded file ${Blue}$1${Color_Off}"
 }
-
 ##
+## @fn sourceFile
 ## @brief Function to source a file into `.bashrc`.
-##
 ## @param $1 file to `source`
-##
-function sourceFile {
+sourceFile () {
 	if [ -f "$1" ]
 	then
 		. $1
