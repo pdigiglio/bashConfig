@@ -6,24 +6,41 @@
 ## `${HOME}` directory and everything will be automatically loaded (after checking that
 ## files actually exist).
 
+gitDir="${HOME}/bashConfig/"
 ## @fn checkUpdates
 ## @brief Check if a new commit has been pushed to my repository
 checkUpdates () {
 
+	# save current directory
+	oldPWD=${PWD}
+	# cd to the Git directory
+	cd ${gitDir}
+	
 	# uncomment this to make sure the script is executed in the proper directory
-	#echo "$PWD"
+	echo "$PWD"
 
-	if [ -z  "$( git diff-index --quiet HEAD -- )" ];
+
+	git update-index -q --refresh  
+	updates=$( git diff-index --quiet HEAD -- )
+
+	if [ ! -z  "${updates}" ];
 	then
-		echo ".bashrc is up to date"
-	else
-		echo "new version of .bashrc available"
+		# silent
+#		echo ".bashrc is up to date"
+#	else
+		echo "Updates for the following files available:"
+		echo " >> directory: ${PWD}"
+		echo " >> updates:   ${updates}"
 	fi
+
+	# go back to where the .bashrc file was called from
+	#cd - # this will print the path
+	cd ${oldPWD}
 }
 
 
 ## @param configPath the path where configuration files are located.
-configPath="${HOME}/bashConfig/"
+configPath=$gitDir # "${HOME}/bashConfig/"
 
 ## Source `.colors`
 . "${configPath}.colors"
