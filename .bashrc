@@ -91,6 +91,9 @@ checkUpdates
 promptConf="${configPath}.prompt"
 sourceFile $promptConf
 
+cudaPath="${configPath}.cuda_path"
+sourceFile $cudaPath
+
 export PATH=~/bin:$PATH
 
 alias ls="ls --color=auto --file-type --human-readable"
