@@ -1,11 +1,45 @@
-# add cuda tools to command path
-export PATH=/usr/local/cuda/bin:${PATH}
-export MANPATH=/usr/local/cuda/man:${MANPATH}
 
-# add cuda libraries to library path
-if [[ "${LD_LIBRARY_PATH}" != "" ]]
-then
-	export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
-else
-	export LD_LIBRARY_PATH=/usr/local/cuda/lib64
-fi
+## @fn 
+## @brief CUDA environment variables.
+##
+## Check if CUDA exists in the system (i.e. if the path `/usr/local/cuda/bin`
+## exists.
+## @return 0 if paths have been added, 1 otherwise
+cudaEnvironmentSetup() {
+
+	# main CUDA path
+	local cudaPath="/usr/local/cuda/"
+
+	if [ -d "${cudaPath}" ]
+	then
+
+		export PATH=/usr/local/cuda/bin:${PATH}
+		echo "  ${Green}CUDA${Color_Off} paths added to \$PATH"
+
+		export MANPATH=/usr/local/cuda/man:${MANPATH}
+		echo "  ${Green}CUDA${Color_Off} man added to \$MANPATH"
+
+		# add cuda libraries to library path
+		if [[ "${LD_LIBRARY_PATH}" != "" ]]
+		then
+			export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+		else
+			export LD_LIBRARY_PATH=/usr/local/cuda/lib64
+		fi
+
+		echo "  ${Green}CUDA${Color_Off} libraries added to \$LD_LIBRARY_PATH"
+
+		return 0
+
+		# XXX this would cause the bash to exit (i.e. close the bash)
+#		exit 0
+	else
+#		echo "CUDA not found"
+		return 1
+
+		# XXX this would cause the bash to exit (i.e. close the bash)
+#		exit 1
+	fi
+}
+
+cudaEnvironmentSetup
