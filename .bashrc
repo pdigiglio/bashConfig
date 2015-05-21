@@ -109,6 +109,7 @@ fi
 
 export PATH=~/bin:$PATH
 
+#alias ls="ls --color=auto --classify --human-readable"
 alias ls="ls --color=auto --file-type --human-readable"
 alias grep="grep --color=auto "
 
