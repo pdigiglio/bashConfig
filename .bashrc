@@ -104,6 +104,11 @@ sourceFile () {
 
 checkUpdates
 
+## @param gitPromptConf name of the file containing a script to detect the
+## git branch and print it into the prompt.
+gitPromptConf="${configPath}.git-prompt.sh"
+sourceFile ${gitPromptConf}
+
 ## @param promptConf name of the file containing prompt configuration.
 promptConf="${configPath}.prompt"
 sourceFile $promptConf
