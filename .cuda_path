@@ -19,7 +19,7 @@ cudaEnvironmentSetup() {
 		echo -e "  ${Green}CUDA${Color_Off} paths added to \$PATH"
 
 		export MANPATH=/usr/local/cuda/man:${MANPATH}
-		echo -e "  ${Green}CUDA${Color_Off} man added to \$MANPATH"
+		echo -e "  ${Green}CUDA${Color_Off}   man added to \$MANPATH"
 
 		# add cuda libraries to library path
 		if [[ "${LD_LIBRARY_PATH}" != "" ]]
@@ -29,7 +29,7 @@ cudaEnvironmentSetup() {
 			export LD_LIBRARY_PATH=/usr/local/cuda/lib64
 		fi
 
-		echo -e "  ${Green}CUDA${Color_Off} libraries added to \$LD_LIBRARY_PATH"
+		echo -e "  ${Green}CUDA${Color_Off}   lib added to \$LD_LIBRARY_PATH"
 
 		return 0
 
