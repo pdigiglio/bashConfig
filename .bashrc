@@ -14,29 +14,46 @@ gitDir="${HOME}/bashConfig/"
 
 ## @fn checkUpdates
 ## @brief Check if a new commit has been pushed to my repository
+#checkUpdates () {
+#
+#	# save current directory
+#	oldPWD=${PWD}
+#	# cd to the Git directory
+#	cd ${gitDir}
+#	
+#	# uncomment this to make sure the script is executed in the proper directory
+#	echo "$PWD"
+#
+#
+#	git update-index -q --refresh  
+#	updates=$( git diff-index --quiet HEAD -- )
+#
+#	if [ ! -z  "${updates}" ];
+#	then
+#		# silent
+##		echo ".bashrc is up to date"
+##	else
+#		echo "Updates for the following files available:"
+#		echo " >> directory: ${PWD}"
+#		echo " >> updates:   ${updates}"
+#	fi
+#
+#	# go back to where the .bashrc file was called from
+#	#cd - # this will print the path
+#	cd ${oldPWD}
+#}
 checkUpdates () {
 
 	# save current directory
 	oldPWD=${PWD}
 	# cd to the Git directory
 	cd ${gitDir}
-	
-	# uncomment this to make sure the script is executed in the proper directory
-	echo "$PWD"
 
-
-	git update-index -q --refresh  
-	updates=$( git diff-index --quiet HEAD -- )
-
-	if [ ! -z  "${updates}" ];
-	then
-		# silent
-#		echo ".bashrc is up to date"
-#	else
-		echo "Updates for the following files available:"
-		echo " >> directory: ${PWD}"
-		echo " >> updates:   ${updates}"
-	fi
+	# This command will print the status of the branches so that one
+	# can see at the bash startup if there is any update.
+	#
+	# ` > /dev/null` will suppress the "Fetching origin" string.
+	git remote -v update > /dev/null
 
 	# go back to where the .bashrc file was called from
 	#cd - # this will print the path
