@@ -102,7 +102,11 @@ sourceFile () {
 	fi
 }
 
-checkUpdates
+# check updates only if it's the first shell
+if [ "$SHLVL" == 1 ] 
+then
+	checkUpdates
+fi
 
 ## @param gitPromptConf name of the file containing a script to detect the
 ## git branch and print it into the prompt.
