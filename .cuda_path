@@ -36,7 +36,7 @@ cudaEnvironmentSetup() {
 		# XXX this would cause the bash to exit (i.e. close the bash)
 #		exit 0
 	else
-		echo -e "  >> ${Green}CUDA${Color_Off} not found!"
+		echo -e "  >> ${Red}CUDA not found!${Color_Off}"
 		return 1
 
 		# XXX this would cause the bash to exit (i.e. close the bash)
